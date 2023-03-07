@@ -1,6 +1,6 @@
 
 import random
-
+import matplotlib.pyplot as plt
 from classes import Agent, VacuumEnvironment, Direction, ReflexVacuumAgent, TrivialVacuumEnvironment
 """
 Exercise 2.8 implementation
@@ -90,7 +90,17 @@ if __name__ == "__main__":
         environment.run()
         metrics_random.append(agent.performance)
     
+    x = [i for i in range(100)]
 
+    plt.bar(x, metrics_random, 0.4, label = 'With Random')
+    plt.bar(x, metrics_simple, 0.4, label = 'Without Random')
+    
+    # plt.xticks(x, X)
+    plt.xlabel("Runs")
+    plt.ylabel("Performance Meassure")
+    plt.title("Simple Reflex Agent vs Simple Reflex Agent with randomize function")
+    plt.legend()
+    plt.show()
     with open('metrics.csv', 'w+') as file:
         file.write('Random,Simple\n')
         for i in range(100):
